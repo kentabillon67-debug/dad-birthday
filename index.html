@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Dad!</title>
-    <!-- FontAwesome for Icons -->
+    <!-- Updated Stable FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
@@ -57,7 +57,6 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Profile / Image Section */
         .profile-card {
             text-align: center;
             display: flex;
@@ -74,6 +73,7 @@
             border: 3px solid var(--accent);
             box-shadow: 0 0 20px var(--accent-glow);
             margin-bottom: 20px;
+            background-color: #111827;
         }
 
         .img-container img {
@@ -92,7 +92,6 @@
             font-size: 0.9rem;
         }
 
-        /* Main Content / Dashboard Area */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -112,7 +111,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Animated Icon */
         .bounce-icon {
             font-size: 2rem;
             color: var(--yellow);
@@ -124,7 +122,6 @@
             50% { transform: translateY(-8px); }
         }
 
-        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -140,9 +137,10 @@
         }
 
         .stat-item i {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: var(--accent);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            display: block;
         }
 
         .stat-item h3 {
@@ -155,7 +153,6 @@
             color: var(--text-muted);
         }
 
-        /* Message Box */
         .message-box {
             background: rgba(56, 189, 248, 0.05);
             border-left: 4px solid var(--accent);
@@ -169,12 +166,11 @@
             color: #e2e8f0;
         }
 
-        /* Interactive Button */
         .btn-greet {
             background: linear-gradient(135deg, var(--accent), #0284c7);
             color: white;
             border: none;
-            padding: 12px;
+            padding: 14px;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
@@ -183,6 +179,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-size: 1rem;
         }
 
         .btn-greet:hover {
@@ -200,8 +197,8 @@
         <!-- Left Column: Photo & Name -->
         <div class="card profile-card">
             <div class="img-container">
-                <!-- Replace 'father.jpg' with the actual link or filename of your dad's photo -->
-                <img src="https://unsplash.com" alt="My Father">
+                <!-- Points directly to your uploaded dad.jpg file -->
+                <img src="dad.jpg" alt="My Father" onerror="this.src='https://unsplash.com'">
             </div>
             <h2>Super Dad</h2>
             <p>Hero & Mentor</p>
