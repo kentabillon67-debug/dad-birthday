@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Dad!</title>
-    <!-- Updated Stable FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Canvas Confetti Library for a real digital celebration -->
+    <script src="https://jsdelivr.net"></script>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -13,8 +13,7 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.3);
-            --pink: #f43f5e;
+            --accent-glow: rgba(56, 189, 248, 0.4);
             --yellow: #facc15;
         }
 
@@ -33,6 +32,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow-x: hidden;
         }
 
         .dashboard {
@@ -66,12 +66,12 @@
         }
 
         .img-container {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 25px var(--accent-glow);
             margin-bottom: 20px;
             background-color: #111827;
         }
@@ -83,13 +83,15 @@
         }
 
         .profile-card h2 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .profile-card p {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
         .main-content {
@@ -105,15 +107,14 @@
         }
 
         .header-box h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             background: linear-gradient(to right, var(--accent), #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .bounce-icon {
-            font-size: 2rem;
-            color: var(--yellow);
+            font-size: 2.2rem;
             animation: bounce 1.5s infinite;
         }
 
@@ -130,39 +131,39 @@
 
         .stat-item {
             background: rgba(255, 255, 255, 0.03);
-            padding: 14px;
-            border-radius: 10px;
+            padding: 16px;
+            border-radius: 12px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .stat-item i {
-            font-size: 1.5rem;
-            color: var(--accent);
+        .stat-icon {
+            font-size: 1.6rem;
             margin-bottom: 8px;
             display: block;
         }
 
         .stat-item h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-bottom: 2px;
+            font-weight: 600;
         }
 
         .stat-item span {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
         .message-box {
             background: rgba(56, 189, 248, 0.05);
             border-left: 4px solid var(--accent);
-            padding: 16px;
-            border-radius: 0 10px 10px 0;
+            padding: 18px;
+            border-radius: 0 12px 12px 0;
         }
 
         .message-box p {
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1.6;
             color: #e2e8f0;
         }
 
@@ -170,24 +171,27 @@
             background: linear-gradient(135deg, var(--accent), #0284c7);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 8px;
+            padding: 16px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s, transform 0.1s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 1rem;
+            gap: 10px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
         }
 
         .btn-greet:hover {
-            opacity: 0.9;
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
         }
 
         .btn-greet:active {
-            transform: scale(0.98);
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -197,7 +201,6 @@
         <!-- Left Column: Photo & Name -->
         <div class="card profile-card">
             <div class="img-container">
-                <!-- Points directly to your uploaded dad.jpg file -->
                 <img src="dad.jpg" alt="My Father" onerror="this.src='https://unsplash.com'">
             </div>
             <h2>Super Dad</h2>
@@ -209,7 +212,7 @@
             <div class="card">
                 <div class="header-box">
                     <h1>Happy Birthday, Dad!</h1>
-                    <i class="fa-solid fa-cake-candles bounce-icon"></i>
+                    <span class="bounce-icon">🎂</span>
                 </div>
                 <div class="message-box" style="margin-top: 15px;">
                     <p>Thank you for your endless guidance, strength, and love. Wishing you a day filled with joy, great health, and happiness!</p>
@@ -218,32 +221,48 @@
 
             <div class="stats-grid">
                 <div class="stat-item">
-                    <i class="fa-solid fa-heart"></i>
+                    <span class="stat-icon">❤️</span>
                     <h3>100%</h3>
                     <span>Love</span>
                 </div>
                 <div class="stat-item">
-                    <i class="fa-solid fa-shield-halved"></i>
+                    <span class="stat-icon">🛡️</span>
                     <h3>Infinite</h3>
                     <span>Support</span>
                 </div>
                 <div class="stat-item">
-                    <i class="fa-solid fa-trophy"></i>
+                    <span class="stat-icon">👑</span>
                     <h3>#1</h3>
                     <span>Father</span>
                 </div>
             </div>
 
             <button class="btn-greet" onclick="celebrate()">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Click for a Surprise
+                ✨ Click for a Surprise
             </button>
         </div>
     </div>
 
     <script>
+        // Trigger realistic party confetti cannon explosion
         function celebrate() {
-            alert("🎉 Happy Birthday to the best Dad in the world! We love you! 🎂");
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
         }
+        
+        // Fire automatically once on open to surprise him immediately!
+        window.onload = function() {
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            }, 500);
+        };
     </script>
 </body>
 </html>
