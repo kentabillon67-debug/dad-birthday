@@ -98,21 +98,21 @@
             50% { border-color: white; }
         }
 
-        .btn {
+        /* Pure CSS target unlock mechanics */
+        .btn-link {
             background: #ffffff;
             color: #1e40af;
-            border: none;
             padding: 14px 35px;
             font-size: 1.1rem;
             font-weight: 700;
             border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
             display: inline-block;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
         }
 
-        .btn:hover {
+        .btn-link:hover {
             background: #facc15;
             color: #1e3a8a;
             transform: translateY(-2px);
@@ -142,8 +142,9 @@
             padding: 20px;
         }
 
-        .modal.active {
-            display: flex;
+        /* Force display instantly when the link hash anchor matches */
+        .modal:target, .modal.active {
+            display: flex !important;
         }
 
         .modal-content {
@@ -177,6 +178,7 @@
             color: white;
             font-size: 2rem;
             cursor: pointer;
+            text-decoration: none;
             z-index: 1010;
         }
 
@@ -204,6 +206,7 @@
             cursor: pointer;
             transition: all 0.2s;
             text-align: left;
+            width: 100%;
         }
 
         .member-btn:hover, .member-btn.active {
@@ -222,6 +225,7 @@
             justify-content: center;
             align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
         }
 
         .pane {
@@ -279,18 +283,19 @@
             <div class="typewriter-box">
                 <span class="typewriter-text">Jerome Abillon</span>
             </div>
-            <!-- Standard dynamic hook to instantly break old click browser locks -->
-            <button class="btn" id="mainActionButton" onclick="openModal()">Messages ❤️</button>
+            <!-- Changing this to a mechanical anchor href tag bypasses all browser script freezes entirely -->
+            <a href="#msgModal" class="btn-link" onclick="triggerConfetti()">Messages ❤️</a>
         </div>
         <div class="image-side">
             <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
         </div>
     </div>
 
-    <!-- Interactive Dashboard Modal Panel Container -->
+    <!-- Messages Modal Popup Box Layout -->
     <div class="modal" id="msgModal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <!-- Mechanical fallback link to close layout -->
+            <a href="#" class="close-btn" onclick="closeModal()">&times;</a>
             
             <div class="nav-side">
                 <div class="nav-title">Family Messages</div>
@@ -319,6 +324,3 @@
                     </div>
                 </div>
 
-                <div class="pane" id="p-kuya">
-                    <img src="kuya.jpg" alt="Kuya">
-                    <div class="msg-box">
