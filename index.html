@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Papa! | Papaw's Day</title>
+    <title>Happy Birthday Papa!</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
@@ -19,9 +19,10 @@
             color: white;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
             overflow-x: hidden;
-            position: relative;
         }
 
         @keyframes gradientBG {
@@ -30,89 +31,62 @@
             100% { background-position: 0% 50%; }
         }
 
-        header {
+        .main-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 900px;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        nav a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: white;
-        }
-
-        .hero-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            align-items: center;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 40px;
-            z-index: 10;
+            align-items: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        @media (max-width: 900px) {
-            .hero-container {
+        @media (max-width: 768px) {
+            .main-card {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding-top: 20px;
+                padding: 25px;
             }
             .image-side {
                 order: -1;
             }
         }
 
-        .text-side p.intro {
+        .intro {
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 10px;
-            opacity: 0.9;
+            color: #bae6fd;
         }
 
-        .text-side h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #facc15;
+            text-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
+            margin-bottom: 10px;
             line-height: 1.1;
-            color: #facc15 !important; 
-            text-shadow: 0 4px 20px rgba(250, 204, 21, 0.6) !important;
         }
 
-        .text-side h2 {
+        .typewriter-box {
+            height: 35px;
+            margin-bottom: 30px;
+        }
+
+        .typewriter-text {
             font-size: 1.8rem;
             font-weight: 400;
-            margin-bottom: 35px;
             border-right: 3px solid white;
             white-space: nowrap;
-            width: 0;
             overflow: hidden;
+            width: 0;
+            display: inline-block;
             animation: typing 4s steps(14, end) infinite, blink 0.75s step-end infinite;
-        }
-
-        @media (max-width: 900px) {
-            .text-side h1 { font-size: 2.8rem; }
-            .text-side h2 { font-size: 1.4rem; margin: 0 auto 35px auto; }
         }
 
         @keyframes typing {
@@ -124,71 +98,36 @@
             50% { border-color: white; }
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        @media (max-width: 900px) {
-            .cta-buttons { justify-content: center; }
-        }
-
         .btn {
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: 2px solid white;
-            border-radius: 4px;
+            background: #ffffff;
+            color: #1e40af;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.2s;
-            background: transparent;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-filled {
-            background-color: white;
-            color: #2563eb;
+        .btn:hover {
+            background: #facc15;
+            color: #1e3a8a;
+            transform: translateY(-2px);
         }
 
-        .btn-filled:hover {
-            background-color: transparent;
-            color: white;
-        }
-
-        .btn-outline:hover {
-            background-color: white;
-            color: #2563eb;
-        }
-
-        .image-side {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .dad-photo {
             width: 100%;
-        }
-
-        .dad-photo-wrapper {
-            width: 100%;
-            max-width: 400px;
-            aspect-ratio: 3 / 4;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            border: 4px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dad-photo-wrapper img {
-            width: 100%;
-            height: 100%;
+            aspect-ratio: 3/4;
+            border-radius: 16px;
             object-fit: cover;
-            display: block;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Interactive Messages Overlay Layout --- */
-        .modal-overlay {
+        /* --- Custom Messages Popup (Modal) Engine --- */
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -197,182 +136,196 @@
             background: rgba(15, 23, 42, 0.95);
             z-index: 1000;
             display: none;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
-        .modal-overlay.active {
+        .modal.active {
             display: flex;
-            opacity: 1;
         }
 
-        .dashboard-container {
+        .modal-content {
             background: linear-gradient(135deg, #1e40af, #4f46e5);
-            width: 100%;
-            max-width: 1100px;
             border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            max-width: 950px;
+            width: 100%;
             position: relative;
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 40px;
+            gap: 30px;
             align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        @media (max-width: 850px) {
-            .dashboard-container {
+        @media (max-width: 800px) {
+            .modal-content {
                 grid-template-columns: 1fr;
-                padding: 25px;
-                gap: 25px;
                 max-height: 90vh;
                 overflow-y: auto;
             }
         }
 
-        .close-dashboard {
+        .close-btn {
             position: absolute;
-            top: 20px;
-            right: 25px;
+            top: 15px;
+            right: 20px;
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.6);
+            color: white;
             font-size: 2rem;
             cursor: pointer;
-            transition: color 0.2s;
         }
 
-        .close-dashboard:hover {
-            color: white;
-        }
-
-        .dashboard-left {
+        .nav-side {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
-        .dashboard-title {
-            font-size: 2rem;
+        .nav-title {
+            font-size: 1.8rem;
             font-weight: 700;
             color: #facc15;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .member-btn {
-            background: white;
-            color: #1e3a8a;
-            border: none;
-            padding: 20px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
             border-radius: 12px;
             cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
+            transition: all 0.2s;
+            text-align: left;
         }
 
         .member-btn:hover, .member-btn.active {
             background: #facc15;
             color: #1e3a8a;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            border-color: #facc15;
         }
 
-        .dashboard-right {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            min-height: 450px;
+        .display-side {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            min-height: 400px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            width: 100%;
         }
 
-        .display-default-view {
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .default-family-img {
-            width: 100%;
-            border-radius: 12px;
-            margin-top: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .letter-view-pane {
+        .pane {
             display: none;
             width: 100%;
-            height: 100%;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
-        .letter-view-pane.active {
+        .pane.active {
             display: flex;
         }
 
-        .letter-img-wrapper {
+        .pane img {
             width: 100%;
-            height: 200px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-
-        .letter-img-wrapper img {
-            width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .letter-text-box {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.95);
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 12px;
-            max-height: 220px;
-            overflow-y: auto;
+        .msg-box {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
             border-left: 4px solid #facc15;
             font-style: italic;
+            max-height: 180px;
+            overflow-y: auto;
         }
 
-        .confetti-piece {
+        /* --- Interactive Fall Pieces --- */
+        .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            top: -20px;
-            z-index: 100;
+            width: 8px;
+            height: 8px;
+            top: -10px;
+            z-index: 2000;
             border-radius: 2px;
             animation: fall linear forwards;
         }
 
         @keyframes fall {
-            to { transform: translateY(105vh) rotate(720deg); }
+            to { transform: translateY(105vh) rotate(360deg); }
         }
+    </style>
+</head>
+<body>
 
-        .bg-spark {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            animation: floatUp linear infinite;
-            z-index: 2;
-            pointer-events: none;
-        }
+    <div class="main-card">
+        <div class="text-side">
+            <p class="intro">Happy Birthday!</p>
+            <h1>Best Papa!</h1>
+            <div class="typewriter-box">
+                <span class="typewriter-text">Jerome Abillon</span>
+            </div>
+            <button class="btn" onclick="openModal()">Messages ❤️</button>
+        </div>
+        <div class="image-side">
+            <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
+        </div>
+    </div>
 
-        @keyframes floatUp {
+    <!-- Messages Modal Popup Box Layout -->
+    <div class="modal" id="msgModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            
+            <div class="nav-side">
+                <div class="nav-title">Family Messages</div>
+                <button class="member-btn" id="b-mamaw" onclick="showPane('mamaw')">Mamaw</button>
+                <button class="member-btn" id="b-brylle" onclick="showPane('brylle')">Brylle</button>
+                <button class="member-btn" id="b-kuya" onclick="showPane('kuya')">Kuya</button>
+            </div>
+            
+            <div class="display-side">
+                <div class="pane active" id="p-default">
+                    <h3 style="text-align:center; margin-bottom:15px;">Click a family name to read their personal letter!</h3>
+                    <img src="Fam.jpg" style="height:220px;" alt="Family">
+                </div>
+
+                <div class="pane" id="p-mamaw">
+                    <img src="mama%26papa.jpg" alt="Mamaw">
+                    <div class="msg-box">
+                        "Happy Birthday to my wonderful partner! Thank you for being our rock, providing for us, and leading our family with love and patience. Wishing you health and endless happiness today!"
+                    </div>
+                </div>
+
+                <div class="pane" id="p-brylle">
+                    <img src="brylle%26papa.jpg" alt="Brylle">
+                    <div class="msg-box">
+                        "Happy Birthday, Papa! Thank you for always giving us the best advice and being someone I can completely look up to. I'm so proud to be your son. Enjoy your special day!"
+                    </div>
+                </div>
+
+                <div class="pane" id="p-kuya">
+                    <img src="kuya.jpg" alt="Kuya">
+                    <div class="msg-box">
+                        "To the best Papa in the world, Happy Birthday! Thank you for working so hard for us and teaching us how to be strong. May all your wishes come true today!"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function triggerConfetti() {
