@@ -13,13 +13,23 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f43f5e, #be123c);
+            /* Animated multi-color shifting background */
+            background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #6d28d9, #7c3aed);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: white;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             position: relative;
+        }
+
+        /* Smooth background transition animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         header {
@@ -107,7 +117,7 @@
 
         @keyframes typing {
             0%, 100% { width: 0; }
-            40%, 80% { width: 15ch; } /* Tailored width for 'Jerome Abillon' */
+            40%, 80% { width: 15ch; }
         }
         @keyframes blink {
             from, to { border-color: transparent }
@@ -137,7 +147,7 @@
 
         .btn-filled {
             background-color: white;
-            color: #be123c;
+            color: #2563eb; /* Matching color for the blue theme text */
         }
 
         .btn-filled:hover {
@@ -147,7 +157,7 @@
 
         .btn-outline:hover {
             background-color: white;
-            color: #be123c;
+            color: #2563eb;
         }
 
         .image-side {
@@ -219,7 +229,6 @@
     </script>
 
     <header>
-        <!-- Updated Logo Name -->
         <div class="logo">Papaw's day</div>
         <nav>
             <a href="#" onclick="celebrate()">Hero</a>
@@ -231,9 +240,7 @@
     <div class="hero-container">
         <div class="text-side">
             <p class="intro">Happy Birthday!</p>
-            <!-- Updated Main Text Title -->
             <h1>Best Papa</h1>
-            <!-- Updated Typewriter Target Profile Name -->
             <h2>Jerome Abillon</h2>
             
             <div class="cta-buttons">
