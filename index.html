@@ -3,20 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Dad!</title>
-    <!-- Canvas Confetti Library for a real digital celebration -->
-    <script src="https://jsdelivr.net"></script>
+    <title>Happy Birthday Dad! | DadFolio</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.4);
-            --yellow: #facc15;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -25,245 +13,241 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background: linear-gradient(135deg, #f43f5e, #be123c);
+            color: white;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
         }
 
-        .dashboard {
+        /* Navbar Layout */
+        header {
             width: 100%;
-            max-width: 900px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        /* Hero Content Grid */
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px 40px 20px;
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 20px;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 40px;
+            z-index: 10;
         }
 
         @media (max-width: 768px) {
-            .dashboard {
+            .hero-container {
                 grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 20px;
+            }
+            .image-side {
+                order: -1;
             }
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* Text Side Styling */
+        .text-side p.intro {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.9;
         }
 
-        .profile-card {
-            text-align: center;
+        .text-side h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .text-side h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 35px;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            width: max-content;
+            animation: typing 3.5s steps(30, end) infinite, blink 0.75s step-end infinite;
+        }
+
+        @media (max-width: 768px) {
+            .text-side h1 { font-size: 2.8rem; }
+            .text-side h2 { font-size: 1.4rem; margin: 0 auto 35px auto; }
+        }
+
+        /* Typewriter Animations */
+        @keyframes typing {
+            0%, 90%, 100% { width: 0; }
+            30%, 60% { width: 100%; }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: white; }
+        }
+
+        /* Custom Action Buttons */
+        .cta-buttons {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons { justify-content: center; }
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            color: white;
+        }
+
+        .btn-filled {
+            background-color: white;
+            color: #be123c;
+        }
+
+        .btn-filled:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: #be123c;
+        }
+
+        /* Image Side Styling */
+        .image-side {
+            display: flex;
             justify-content: center;
+            align-items: center;
         }
 
-        .img-container {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+        .dad-photo-wrapper {
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 3 / 4;
+            border-radius: 12px;
             overflow: hidden;
-            border: 4px solid var(--accent);
-            box-shadow: 0 0 25px var(--accent-glow);
-            margin-bottom: 20px;
-            background-color: #111827;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
         }
 
-        .img-container img {
+        .dad-photo-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .profile-card h2 {
-            font-size: 1.6rem;
-            margin-bottom: 5px;
-            font-weight: 700;
+        /* Confetti Elements */
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            z-index: 1;
+            border-radius: 2px;
+            animation: fall linear forwards;
         }
 
-        .profile-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .header-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-box h1 {
-            font-size: 2rem;
-            background: linear-gradient(to right, var(--accent), #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .bounce-icon {
-            font-size: 2.2rem;
-            animation: bounce 1.5s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .stat-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .stat-icon {
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .stat-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 2px;
-            font-weight: 600;
-        }
-
-        .stat-item span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .message-box {
-            background: rgba(56, 189, 248, 0.05);
-            border-left: 4px solid var(--accent);
-            padding: 18px;
-            border-radius: 0 12px 12px 0;
-        }
-
-        .message-box p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #e2e8f0;
-        }
-
-        .btn-greet {
-            background: linear-gradient(135deg, var(--accent), #0284c7);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
-            width: 100%;
-        }
-
-        .btn-greet:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
-        }
-
-        .btn-greet:active {
-            transform: translateY(0);
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(720deg); }
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard">
-        <!-- Left Column: Photo & Name -->
-        <div class="card profile-card">
-            <div class="img-container">
-                <img src="dad.jpg" alt="My Father">
+    <header>
+        <div class="logo">DadFolio</div>
+        <nav>
+            <a href="#">Hero</a>
+            <a href="#">Mentor</a>
+            <a href="#">Best Dad</a>
+        </nav>
+    </header>
+
+    <div class="hero-container">
+        <!-- Left Column: Content -->
+        <div class="text-side">
+            <p class="intro">Happy Birthday!</p>
+            <h1>I'm Super Dad</h1>
+            <h2>Mentor & Legend</h2>
+            
+            <div class="cta-buttons">
+                <button class="btn btn-filled" onclick="celebrate()">Celebrate Me</button>
+                <button class="btn btn-outline" onclick="showLove()">Show Love ❤️</button>
             </div>
-            <h2>Super Dad</h2>
-            <p>Hero & Mentor</p>
         </div>
 
-        <!-- Right Column: Dashboard & Greetings -->
-        <div class="main-content">
-            <div class="card">
-                <div class="header-box">
-                    <h1>Happy Birthday, Dad!</h1>
-                    <span class="bounce-icon">🎂</span>
-                </div>
-                <div class="message-box" style="margin-top: 15px;">
-                    <p>Thank you for your endless guidance, strength, and love. Wishing you a day filled with joy, great health, and happiness!</p>
-                </div>
+        <!-- Right Column: Image Context Alignment -->
+        <div class="image-side">
+            <div class="dad-photo-wrapper">
+                <img src="dad.jpg" alt="My Father">
             </div>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-icon">❤️</span>
-                    <h3>100%</h3>
-                    <span>Love</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">🛡️</span>
-                    <h3>Infinite</h3>
-                    <span>Support</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">👑</span>
-                    <h3>#1</h3>
-                    <span>Father</span>
-                </div>
-            </div>
-
-            <button class="btn-greet" onclick="celebrate()">
-                ✨ Click for a Surprise
-            </button>
         </div>
     </div>
 
     <script>
-        // Trigger realistic party confetti cannon explosion
         function celebrate() {
-            confetti({
-                particleCount: 150,
-                spread: 80,
-                origin: { y: 0.6 }
-            });
+            const colors = ['#ffffff', '#facc15', '#ffedd5', '#fecdd3', '#bae6fd'];
+            for (let i = 0; i < 80; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti-piece');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 6 + 6 + 'px';
+                confetti.style.height = Math.random() * 10 + 6 + 'px';
+                
+                const speed = Math.random() * 2 + 1.5; 
+                confetti.style.animationDuration = speed + 's';
+                confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), (speed + 0.3) * 1000);
+            }
         }
-        
-        // Fire automatically once on open to surprise him immediately!
-        window.onload = function() {
-            setTimeout(() => {
-                confetti({
-                    particleCount: 50,
-                    spread: 60,
-                    origin: { y: 0.6 }
-                });
-            }, 500);
-        };
+
+        function showLove() {
+            alert("❤️ You are the best father in the universe! Happy Birthday! 🎉");
+            celebrate();
+        }
     </script>
 </body>
 </html>
