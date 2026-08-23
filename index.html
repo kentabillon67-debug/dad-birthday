@@ -13,7 +13,6 @@
         }
 
         body {
-            /* Animated multi-color shifting background */
             background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #6d28d9, #7c3aed);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -25,7 +24,6 @@
             position: relative;
         }
 
-        /* Smooth background transition animation */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -92,11 +90,14 @@
             opacity: 0.9;
         }
 
+        /* Target text color change to custom golden yellow styling */
         .text-side h1 {
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 15px;
             line-height: 1.1;
+            color: #facc15; 
+            text-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
         }
 
         .text-side h2 {
@@ -147,7 +148,7 @@
 
         .btn-filled {
             background-color: white;
-            color: #2563eb; /* Matching color for the blue theme text */
+            color: #2563eb;
         }
 
         .btn-filled:hover {
@@ -240,7 +241,8 @@
     <div class="hero-container">
         <div class="text-side">
             <p class="intro">Happy Birthday!</p>
-            <h1>Best Papa</h1>
+            <!-- Modified message header values -->
+            <h1>Best Papa!</h1>
             <h2>Jerome Abillon</h2>
             
             <div class="cta-buttons">
