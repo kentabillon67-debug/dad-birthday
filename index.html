@@ -52,9 +52,7 @@
                 text-align: center;
                 padding: 25px;
             }
-            .image-side {
-                order: -1;
-            }
+            .image-side { order: -1; }
         }
 
         .intro {
@@ -98,7 +96,6 @@
             50% { border-color: white; }
         }
 
-        /* Pure CSS target unlock mechanics */
         .btn-link {
             background: #ffffff;
             color: #1e40af;
@@ -127,7 +124,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Custom Messages Popup (Modal) Engine --- */
+        /* --- Mechanical Pop-up Overlay --- */
         .modal {
             position: fixed;
             top: 0;
@@ -142,8 +139,8 @@
             padding: 20px;
         }
 
-        /* Force display instantly when the link hash anchor matches */
-        .modal:target, .modal.active {
+        /* Pure CSS Rule: Displays immediately when URL ends with #msgDashboard */
+        #msgDashboard:target {
             display: flex !important;
         }
 
@@ -195,7 +192,7 @@
             margin-bottom: 5px;
         }
 
-        .member-btn {
+        .member-link {
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -203,13 +200,12 @@
             font-size: 1.1rem;
             font-weight: 600;
             border-radius: 12px;
-            cursor: pointer;
+            text-decoration: none;
+            display: block;
             transition: all 0.2s;
-            text-align: left;
-            width: 100%;
         }
 
-        .member-btn:hover, .member-btn.active {
+        .member-link:hover {
             background: #facc15;
             color: #1e3a8a;
             border-color: #facc15;
@@ -228,6 +224,7 @@
             width: 100%;
         }
 
+        /* --- Mechanical Card Switching Logic --- */
         .pane {
             display: none;
             width: 100%;
@@ -235,8 +232,24 @@
             gap: 15px;
         }
 
-        .pane.active {
-            display: flex;
+        /* Show the active greeting frame mechanically based on URL anchor targets */
+        #msgDashboard:target #p-default { display: flex; }
+        #view-mamaw:target #p-mamaw { display: flex !important; }
+        #view-brylle:target #p-brylle { display: flex !important; }
+        #view-kuya:target #p-kuya { display: flex !important; }
+
+        /* Hide the default view whenever a specific profile link target becomes active */
+        #view-mamaw:target #p-default,
+        #view-brylle:target #p-default,
+        #view-kuya:target #p-default { display: none !important; }
+
+        /* Style active target links to turn bright gold mechanically */
+        #view-mamaw:target #lnk-mamaw,
+        #view-brylle:target #lnk-brylle,
+        #view-kuya:target #lnk-kuya {
+            background: #facc15 !important;
+            color: #1e3a8a !important;
+            border-color: #facc15 !important;
         }
 
         .pane img {
@@ -283,44 +296,29 @@
             <div class="typewriter-box">
                 <span class="typewriter-text">Jerome Abillon</span>
             </div>
-            <!-- Changing this to a mechanical anchor href tag bypasses all browser script freezes entirely -->
-            <a href="#msgModal" class="btn-link" onclick="triggerConfetti()">Messages ❤️</a>
+            <!-- Opens the popup framework directly through HTML target anchors -->
+            <a href="#msgDashboard" class="btn-link" onclick="triggerConfetti()">Messages ❤️</a>
         </div>
         <div class="image-side">
             <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
         </div>
     </div>
 
-    <!-- Messages Modal Popup Box Layout -->
-    <div class="modal" id="msgModal">
-        <div class="modal-content">
-            <!-- Mechanical fallback link to close layout -->
-            <a href="#" class="close-btn" onclick="closeModal()">&times;</a>
+    <!-- Messages Modal Popup Box Layout Container -->
+    <!-- Responds directly to target URLs #msgDashboard, #view-mamaw, #view-brylle, and #view-kuya -->
+    <div class="modal" id="msgDashboard">
+        <div class="modal-content" id="view-mamaw">
+        <div class="modal-content" id="view-brylle">
+        <div class="modal-content" id="view-kuya">
+            <!-- Clear link hash to mechanically close the card frame -->
+            <a href="#" class="close-btn">&times;</a>
             
             <div class="nav-side">
                 <div class="nav-title">Family Messages</div>
-                <button class="member-btn" id="b-mamaw" onclick="showPane('mamaw')">Mamaw</button>
-                <button class="member-btn" id="b-brylle" onclick="showPane('brylle')">Brylle</button>
-                <button class="member-btn" id="b-kuya" onclick="showPane('kuya')">Kuya</button>
+                <a href="#view-mamaw" class="member-link" id="lnk-mamaw" onclick="triggerConfetti()">Mamaw</a>
+                <a href="#view-brylle" class="member-link" id="lnk-brylle" onclick="triggerConfetti()">Brylle</a>
+                <a href="#view-kuya" class="member-link" id="lnk-kuya" onclick="triggerConfetti()">Kuya</a>
             </div>
             
             <div class="display-side">
-                <div class="pane active" id="p-default">
-                    <h3 style="text-align:center; margin-bottom:15px; font-weight: 600;">Click a family name to read their personal letter!</h3>
-                    <img src="Fam.jpg" style="height:220px; object-fit: cover; width:100%; border-radius:10px;" alt="Family">
-                </div>
-
-                <div class="pane" id="p-mamaw">
-                    <img src="mama%26papa.jpg" alt="Mamaw">
-                    <div class="msg-box">
-                        "Happy Birthday to my wonderful partner! Thank you for being our rock, providing for us, and leading our family with love and patience. Wishing you health and endless happiness today!"
-                    </div>
-                </div>
-
-                <div class="pane" id="p-brylle">
-                    <img src="brylle%26papa.jpg" alt="Brylle">
-                    <div class="msg-box">
-                        "Happy Birthday, Papa! Thank you for always giving us the best advice and being someone I can completely look up to. I'm so proud to be your son. Enjoy your special day!"
-                    </div>
-                </div>
-
+                <div class="pane" id="p-default">
