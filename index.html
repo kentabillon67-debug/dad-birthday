@@ -109,6 +109,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            display: inline-block;
         }
 
         .btn:hover {
@@ -176,6 +177,7 @@
             color: white;
             font-size: 2rem;
             cursor: pointer;
+            z-index: 1010;
         }
 
         .nav-side {
@@ -253,7 +255,6 @@
             overflow-y: auto;
         }
 
-        /* --- Interactive Fall Pieces --- */
         .confetti {
             position: absolute;
             width: 8px;
@@ -278,14 +279,15 @@
             <div class="typewriter-box">
                 <span class="typewriter-text">Jerome Abillon</span>
             </div>
-            <button class="btn" onclick="openModal()">Messages ❤️</button>
+            <!-- Standard dynamic hook to instantly break old click browser locks -->
+            <button class="btn" id="mainActionButton" onclick="openModal()">Messages ❤️</button>
         </div>
         <div class="image-side">
             <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
         </div>
     </div>
 
-    <!-- Messages Modal Popup Box Layout -->
+    <!-- Interactive Dashboard Modal Panel Container -->
     <div class="modal" id="msgModal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -299,8 +301,8 @@
             
             <div class="display-side">
                 <div class="pane active" id="p-default">
-                    <h3 style="text-align:center; margin-bottom:15px;">Click a family name to read their personal letter!</h3>
-                    <img src="Fam.jpg" style="height:220px;" alt="Family">
+                    <h3 style="text-align:center; margin-bottom:15px; font-weight: 600;">Click a family name to read their personal letter!</h3>
+                    <img src="Fam.jpg" style="height:220px; object-fit: cover; width:100%; border-radius:10px;" alt="Family">
                 </div>
 
                 <div class="pane" id="p-mamaw">
@@ -320,12 +322,3 @@
                 <div class="pane" id="p-kuya">
                     <img src="kuya.jpg" alt="Kuya">
                     <div class="msg-box">
-                        "To the best Papa in the world, Happy Birthday! Thank you for working so hard for us and teaching us how to be strong. May all your wishes come true today!"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function triggerConfetti() {
