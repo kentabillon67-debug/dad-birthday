@@ -20,7 +20,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -66,9 +66,9 @@
             margin: auto;
             padding: 0 20px 40px 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 0.9fr;
             align-items: center;
-            gap: 50px;
+            gap: 40px;
             z-index: 10;
         }
 
@@ -93,31 +93,32 @@
         .text-side h1 {
             font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
             line-height: 1.1;
             color: #facc15 !important; 
             text-shadow: 0 4px 20px rgba(250, 204, 21, 0.6) !important;
         }
 
+        /* Fixed Name Typing Configuration */
         .text-side h2 {
             font-size: 1.8rem;
             font-weight: 400;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             border-right: 3px solid white;
             white-space: nowrap;
             width: 0;
             overflow: hidden;
-            animation: typing 3.5s steps(30, end) infinite, blink 0.75s step-end infinite;
+            animation: typing 4s steps(14, end) infinite, blink 0.75s step-end infinite;
         }
 
         @media (max-width: 768px) {
             .text-side h1 { font-size: 2.8rem; }
-            .text-side h2 { font-size: 1.4rem; margin: 0 auto 35px auto; }
+            .text-side h2 { font-size: 1.4rem; margin: 0 auto 25px auto; }
         }
 
         @keyframes typing {
             0%, 100% { width: 0; }
-            40%, 80% { width: 15ch; }
+            40%, 80% { width: 14ch; } /* Fits 'Jerome Abillon' exactly */
         }
         @keyframes blink {
             from, to { border-color: transparent }
@@ -127,6 +128,7 @@
         .cta-buttons {
             display: flex;
             gap: 15px;
+            margin-bottom: 30px;
         }
 
         @media (max-width: 768px) {
@@ -160,6 +162,101 @@
             color: #2563eb;
         }
 
+        /* --- CSS Birthday Cake Styling --- */
+        .cake-area {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .cake-area { align-items: center; margin-bottom: 30px; }
+        }
+
+        .cake-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cake {
+            position: relative;
+            width: 180px;
+            height: 100px;
+            background: #f472b6;
+            border-radius: 10px 10px 0 0;
+            box-shadow: inset 0 15px #f43f5e, 0 10px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .cake:hover {
+            transform: scale(1.03);
+        }
+
+        /* Middle Cream Layer */
+        .cake::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 16px;
+            background: #fff;
+            top: 45px;
+            left: 0;
+            box-shadow: 0 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Frosting Drips */
+        .cake::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 14px;
+            background: #f43f5e;
+            top: 15px;
+            left: 0;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .candle {
+            position: absolute;
+            width: 12px;
+            height: 40px;
+            background: linear-gradient(to right, #6ee7b7, #34d399);
+            top: -40px;
+            left: 84px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .flame {
+            position: absolute;
+            width: 14px;
+            height: 22px;
+            background: #fb923c;
+            border-radius: 50% 50% 20% 20%;
+            top: -24px;
+            left: -1px;
+            box-shadow: 0 0 15px #f97316;
+            animation: flicker 0.6s infinite alternate;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); background: #f97316; }
+            100% { transform: scale(1.1) rotate(2deg); background: #fbbf24; }
+        }
+
+        /* Blow out state styling */
+        .cake.blown .flame {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- End Cake Styling --- */
+
         .image-side {
             display: flex;
             justify-content: center;
@@ -187,7 +284,7 @@
             width: 10px;
             height: 10px;
             top: -20px;
-            z-index: 1;
+            z-index: 100;
             border-radius: 2px;
             animation: fall linear forwards;
         }
@@ -247,39 +344,11 @@
                 <button class="btn btn-filled" onclick="celebrate()">Celebrate Me</button>
                 <button class="btn btn-outline" onclick="showLove()">Show Love ❤️</button>
             </div>
-        </div>
 
-        <div class="image-side">
-            <div class="dad-photo-wrapper">
-                <img src="papa 2nd.jpg" alt="My Father">
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function celebrate() {
-            const colors = ['#ffffff', '#facc15', '#ffedd5', '#fecdd3', '#bae6fd'];
-            for (let i = 0; i < 80; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti-piece');
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 6 + 6 + 'px';
-                confetti.style.height = Math.random() * 10 + 6 + 'px';
-                
-                const speed = Math.random() * 2 + 1.5; 
-                confetti.style.animationDuration = speed + 's';
-                confetti.style.animationDelay = Math.random() * 0.3 + 's';
-                
-                document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), (speed + 0.3) * 1000);
-            }
-        }
-
-        function showLove() {
-            alert("❤️ You are the best father in the universe! Happy Birthday! 🎉");
-            celebrate();
-        }
-    </script>
-</body>
-</html>
+            <!-- New Interactive Cake Container Elements -->
+            <div class="cake-area">
+                <div class="cake-label" id="instruction">🎂 Tap the cake to blow the candle!</div>
+                <div class="cake" id="birthdayCake" onclick="blowCandle()">
+                    <div class="candle">
+                        <div class="flame" id="candleFlame"></div>
+                    </div>
