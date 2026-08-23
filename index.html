@@ -34,7 +34,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -60,11 +60,12 @@
             color: white;
         }
 
+        /* Fixed structural layout rules to balance content sizing */
         .hero-container {
             width: 100%;
             max-width: 1200px;
             margin: auto;
-            padding: 0 20px 40px 20px;
+            padding: 20px;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             align-items: center;
@@ -72,7 +73,7 @@
             z-index: 10;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -99,7 +100,6 @@
             text-shadow: 0 4px 20px rgba(250, 204, 21, 0.6) !important;
         }
 
-        /* Fixed Name Typing Configuration */
         .text-side h2 {
             font-size: 1.8rem;
             font-weight: 400;
@@ -111,14 +111,14 @@
             animation: typing 4s steps(14, end) infinite, blink 0.75s step-end infinite;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .text-side h1 { font-size: 2.8rem; }
             .text-side h2 { font-size: 1.4rem; margin: 0 auto 25px auto; }
         }
 
         @keyframes typing {
             0%, 100% { width: 0; }
-            40%, 80% { width: 14ch; } /* Fits 'Jerome Abillon' exactly */
+            40%, 80% { width: 14ch; }
         }
         @keyframes blink {
             from, to { border-color: transparent }
@@ -128,10 +128,10 @@
         .cta-buttons {
             display: flex;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .cta-buttons { justify-content: center; }
         }
 
@@ -162,7 +162,6 @@
             color: #2563eb;
         }
 
-        /* --- CSS Birthday Cake Styling --- */
         .cake-area {
             margin-top: 10px;
             display: flex;
@@ -170,7 +169,7 @@
             align-items: flex-start;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .cake-area { align-items: center; margin-bottom: 30px; }
         }
 
@@ -185,7 +184,7 @@
         .cake {
             position: relative;
             width: 180px;
-            height: 100px;
+            height: 90px;
             background: #f472b6;
             border-radius: 10px 10px 0 0;
             box-shadow: inset 0 15px #f43f5e, 0 10px 20px rgba(0,0,0,0.2);
@@ -197,24 +196,21 @@
             transform: scale(1.03);
         }
 
-        /* Middle Cream Layer */
         .cake::before {
             content: "";
             position: absolute;
             width: 100%;
-            height: 16px;
+            height: 14px;
             background: #fff;
-            top: 45px;
+            top: 40px;
             left: 0;
-            box-shadow: 0 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Frosting Drips */
         .cake::after {
             content: "";
             position: absolute;
             width: 100%;
-            height: 14px;
+            height: 12px;
             background: #f43f5e;
             top: 15px;
             left: 0;
@@ -224,9 +220,9 @@
         .candle {
             position: absolute;
             width: 12px;
-            height: 40px;
+            height: 35px;
             background: linear-gradient(to right, #6ee7b7, #34d399);
-            top: -40px;
+            top: -35px;
             left: 84px;
             border-radius: 3px 3px 0 0;
         }
@@ -249,23 +245,22 @@
             100% { transform: scale(1.1) rotate(2deg); background: #fbbf24; }
         }
 
-        /* Blow out state styling */
         .cake.blown .flame {
             opacity: 0;
             pointer-events: none;
         }
 
-        /* --- End Cake Styling --- */
-
         .image-side {
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
         }
 
+        /* Constrained photo size rules to prevent side-slipping */
         .dad-photo-wrapper {
             width: 100%;
-            max-width: 460px;
+            max-width: 400px;
             aspect-ratio: 3 / 4;
             border-radius: 20px;
             overflow: hidden;
@@ -277,6 +272,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         .confetti-piece {
@@ -345,10 +341,17 @@
                 <button class="btn btn-outline" onclick="showLove()">Show Love ❤️</button>
             </div>
 
-            <!-- New Interactive Cake Container Elements -->
             <div class="cake-area">
                 <div class="cake-label" id="instruction">🎂 Tap the cake to blow the candle!</div>
                 <div class="cake" id="birthdayCake" onclick="blowCandle()">
                     <div class="candle">
                         <div class="flame" id="candleFlame"></div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-side">
+            <div class="dad-photo-wrapper">
+                <img src="papa 2nd.jpg" alt="My Father">
+            </div>
