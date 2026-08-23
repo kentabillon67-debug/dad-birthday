@@ -13,6 +13,7 @@
         }
 
         body {
+            /* Animated fluid blue to purple gradient shifting background */
             background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #6d28d9, #7c3aed);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -90,14 +91,14 @@
             opacity: 0.9;
         }
 
-        /* Target text color change to custom golden yellow styling */
+        /* Enforces glowing golden yellow lettering across all cached browsers */
         .text-side h1 {
             font-size: 4rem;
             font-weight: 700;
             margin-bottom: 15px;
             line-height: 1.1;
-            color: #facc15; 
-            text-shadow: 0 4px 20px rgba(250, 204, 21, 0.3);
+            color: #facc15 !important; 
+            text-shadow: 0 4px 20px rgba(250, 204, 21, 0.6) !important;
         }
 
         .text-side h2 {
@@ -241,7 +242,6 @@
     <div class="hero-container">
         <div class="text-side">
             <p class="intro">Happy Birthday!</p>
-            <!-- Modified message header values -->
             <h1>Best Papa!</h1>
             <h2>Jerome Abillon</h2>
             
