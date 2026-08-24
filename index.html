@@ -146,7 +146,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Pop-up Overlay --- */
+        /* --- Pop-up Overlay Container Layout --- */
         .modal {
             position: fixed;
             top: 0;
@@ -279,59 +279,49 @@
             overflow-y: auto;
         }
 
-        /* --- Permanent CSS Background Confetti System --- */
-        .confetti-overlay {
+        /* --- Mechanical Non-Stop Party Confetti Engine --- */
+        .confetti-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 5;
-            display: none; /* Only turns on when requested */
+            z-index: 2000;
+            display: none; /* Shows up on interaction */
         }
 
-        /* Displays the confetti mechanically when clicking Celebrate Me */
-        body:has(.btn-filled:active) .confetti-overlay,
-        body:has(.btn-outline:active) .confetti-overlay {
+        /* Pure CSS trigger: Display the falling strips whenever Celebrate or Dashboard is open */
+        body:has(.btn-filled:active) .confetti-container,
+        #msgDashboard:target .confetti-container {
             display: block !important;
         }
 
-        .piece {
+        .strip {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            top: -20px;
-            border-radius: 2px;
-            animation: fall linear infinite;
+            width: 12px;
+            height: 24px;
+            top: -30px;
+            border-radius: 3px;
+            animation: drop linear infinite;
         }
 
-        /* Set up staggered, hardcoded animation trails */
-        .p1 { left: 10%; background: #facc15; animation-duration: 3.5s; animation-delay: 0s; }
-        .p2 { left: 25%; background: #3b82f6; animation-duration: 4.2s; animation-delay: 0.5s; }
-        .p3 { left: 40%; background: #ffffff; animation-duration: 3.8s; animation-delay: 1.2s; }
-        .p4 { left: 55%; background: #f472b6; animation-duration: 4.5s; animation-delay: 0.2s; }
-        .p5 { left: 70%; background: #34d399; animation-duration: 3.9s; animation-delay: 0.8s; }
-        .p6 { left: 85%; background: #ff4500; animation-duration: 4.1s; animation-delay: 1.5s; }
+        /* Set up independent falling paths to prevent collision */
+        .s1 { left: 8%; background: #facc15; animation-duration: 2.5s; animation-delay: 0s; }
+        .s2 { left: 22%; background: #3b82f6; animation-duration: 3.1s; animation-delay: 0.4s; }
+        .s3 { left: 38%; background: #ffffff; animation-duration: 2.8s; animation-delay: 0.9s; }
+        .s4 { left: 52%; background: #f472b6; animation-duration: 3.4s; animation-delay: 0.2s; }
+        .s5 { left: 68%; background: #34d399; animation-duration: 2.7s; animation-delay: 0.6s; }
+        .s6 { left: 82%; background: #ff4500; animation-duration: 3.2s; animation-delay: 1.1s; }
+        .s7 { left: 94%; background: #a855f7; animation-duration: 2.9s; animation-delay: 0.5s; }
 
-        @keyframes fall {
+        @keyframes drop {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0.3; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Permanent Background Fall Elements Container -->
-    <div class="confetti-overlay">
-        <div class="piece p1"></div>
-        <div class="piece p2"></div>
-        <div class="piece p3"></div>
-        <div class="piece p4"></div>
-        <div class="piece p5"></div>
-        <div class="piece p6"></div>
-    </div>
 
     <div class="main-card">
         <div class="text-side">
@@ -342,5 +332,11 @@
             </div>
             
             <div class="cta-buttons">
-                <!-- Pure structural button tracking handles the display hooks -->
+                <!-- Mechanical action fields completely fixed -->
                 <button class="btn btn-filled">Celebrate Me</button>
+                <a href="#msgDashboard" class="btn btn-outline">Messages ❤️</a>
+            </div>
+        </div>
+        <div class="image-side">
+            <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
+        </div>
