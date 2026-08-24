@@ -124,7 +124,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Mechanical Pop-up Overlay --- */
+        /* --- Pop-up Overlay --- */
         .modal {
             position: fixed;
             top: 0;
@@ -139,12 +139,7 @@
             padding: 20px;
         }
 
-        /* Base open state for structural fragments */
-        .modal:target,
-        #msgDashboard:target,
-        #view-mamaw:target,
-        #view-brylle:target,
-        #view-kuya:target {
+        .modal:target {
             display: flex !important;
         }
 
@@ -235,27 +230,12 @@
             width: 100%;
         }
 
-        /* --- Mechanical Card Switching Logic --- */
+        /* --- Panel View Control Core --- */
         .pane {
             display: none;
             width: 100%;
             flex-direction: column;
             gap: 20px;
-        }
-
-        /* Show the active greeting frame mechanically based on URL anchor targets */
-        #msgDashboard:target #p-default { display: flex !important; }
-        #view-mamaw:target #p-mamaw { display: flex !important; }
-        #view-brylle:target #p-brylle { display: flex !important; }
-        #view-kuya:target #p-kuya { display: flex !important; }
-
-        /* Style active target links to turn bright gold mechanically */
-        #view-mamaw:target #lnk-mamaw,
-        #view-brylle:target #lnk-brylle,
-        #view-kuya:target #lnk-kuya {
-            background: #facc15 !important;
-            color: #1e3a8a !important;
-            border-color: #facc15 !important;
         }
 
         .pane img {
@@ -274,7 +254,7 @@
             border-radius: 12px;
             border-left: 4px solid #facc15;
             font-style: italic;
-            max-height: 200px;
+            max-height: 180px;
             overflow-y: auto;
         }
 
@@ -286,6 +266,10 @@
             z-index: 2000;
             border-radius: 2px;
             pointer-events: none;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
         }
     </style>
 </head>
@@ -307,21 +291,36 @@
 
     <!-- Messages Modal Popup Box Layout Container -->
     <div class="modal" id="msgDashboard">
-        <!-- Structural single container block preventing flat target overflow collapse -->
-        <div class="dashboard-container" id="view-mamaw">
-        <div class="dashboard-container" id="view-brylle">
-        <div class="dashboard-container" id="view-kuya">
+        <div class="dashboard-container">
             
             <a href="#" class="close-btn">&times;</a>
             
             <div class="nav-side">
                 <div class="nav-title">Family Messages</div>
-                <a href="#view-mamaw" class="member-link" id="lnk-mamaw" onclick="triggerConfetti()">Mamaw</a>
-                <a href="#view-brylle" class="member-link" id="lnk-brylle" onclick="triggerConfetti()">Brylle</a>
-                <a href="#view-kuya" class="member-link" id="lnk-kuya" onclick="triggerConfetti()">Kuya</a>
+                <button class="member-link" id="btn-mamaw" onclick="openPane('mamaw')">Mamaw</button>
+                <button class="member-link" id="btn-brylle" onclick="openPane('brylle')">Brylle</button>
+                <button class="member-link" id="btn-kuya" onclick="openPane('kuya')">Kuya</button>
             </div>
             
             <div class="display-side">
-                <!-- Flat CSS rendering layout selector blocks -->
+                <!-- Initial Frame View -->
                 <div class="pane" id="p-default" style="display: flex;">
                     <h3 style="text-align:center; margin-bottom:15px; font-weight:600; font-size:1.2rem;">Select a family member to read their card!</h3>
+                    <img src="Fam.jpg" style="height:200px; object-fit: cover; width:100%; border-radius:12px;" alt="Family">
+                </div>
+
+                <!-- Individual Family Greeting Card Views -->
+                <div class="pane" id="p-mamaw">
+                    <img src="mama%26papa.jpg" alt="Mamaw">
+                    <div class="msg-box">
+                        "Happy Birthday to my wonderful partner! Thank you for being our rock, providing for us, and leading our family with love and patience. Wishing you health and endless happiness today!"
+                    </div>
+                </div>
+
+                <div class="pane" id="p-brylle">
+                    <img src="brylle%26papa.jpg" alt="Brylle">
+                    <div class="msg-box">
+                        "Happy Birthday, Papa! Thank you for always giving us the best advice and being someone I can completely look up to. I'm so proud to be your son. Enjoy your special day!"
+                    </div>
+                </div>
+
