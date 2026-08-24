@@ -279,25 +279,59 @@
             overflow-y: auto;
         }
 
-        /* Fixed placement mechanics for confetti pieces */
-        .confetti {
+        /* --- Permanent CSS Background Confetti System --- */
+        .confetti-overlay {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            display: none; /* Only turns on when requested */
+        }
+
+        /* Displays the confetti mechanically when clicking Celebrate Me */
+        body:has(.btn-filled:active) .confetti-overlay,
+        body:has(.btn-outline:active) .confetti-overlay {
+            display: block !important;
+        }
+
+        .piece {
+            position: absolute;
             width: 10px;
             height: 10px;
             top: -20px;
-            z-index: 9999 !important;
-            border-radius: 3px;
-            pointer-events: none;
-            animation: fall linear forwards;
+            border-radius: 2px;
+            animation: fall linear infinite;
         }
 
+        /* Set up staggered, hardcoded animation trails */
+        .p1 { left: 10%; background: #facc15; animation-duration: 3.5s; animation-delay: 0s; }
+        .p2 { left: 25%; background: #3b82f6; animation-duration: 4.2s; animation-delay: 0.5s; }
+        .p3 { left: 40%; background: #ffffff; animation-duration: 3.8s; animation-delay: 1.2s; }
+        .p4 { left: 55%; background: #f472b6; animation-duration: 4.5s; animation-delay: 0.2s; }
+        .p5 { left: 70%; background: #34d399; animation-duration: 3.9s; animation-delay: 0.8s; }
+        .p6 { left: 85%; background: #ff4500; animation-duration: 4.1s; animation-delay: 1.5s; }
+
         @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(110vh) rotate(720deg); }
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Permanent Background Fall Elements Container -->
+    <div class="confetti-overlay">
+        <div class="piece p1"></div>
+        <div class="piece p2"></div>
+        <div class="piece p3"></div>
+        <div class="piece p4"></div>
+        <div class="piece p5"></div>
+        <div class="piece p6"></div>
+    </div>
 
     <div class="main-card">
         <div class="text-side">
@@ -308,34 +342,5 @@
             </div>
             
             <div class="cta-buttons">
-                <!-- Inline function references fixed -->
-                <button class="btn btn-filled" onclick="celebrate(event)">Celebrate Me</button>
-                <a href="#msgDashboard" class="btn btn-outline" onclick="celebrate(event)">Messages ❤️</a>
-            </div>
-        </div>
-        <div class="image-side">
-            <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
-        </div>
-    </div>
-
-    <!-- Messages Modal Popup Box Layout Container -->
-    <div class="modal" id="msgDashboard">
-        <div class="dashboard-container">
-            
-            <a href="#" class="close-btn">&times;</a>
-            
-            <div class="nav-side">
-                <div class="nav-title">Family Messages</div>
-                <button class="member-link" id="btn-mamaw" onclick="openPane('mamaw', event)">Mamaw</button>
-                <button class="member-link" id="btn-brylle" onclick="openPane('brylle', event)">Brylle</button>
-                <button class="member-link" id="btn-kuya" onclick="openPane('kuya', event)">Kuya</button>
-            </div>
-            
-            <div class="display-side">
-                <!-- Initial Frame View -->
-                <div class="pane" id="p-default" style="display: flex;">
-                    <h3 style="text-align:center; margin-bottom:15px; font-weight:600; font-size:1.2rem;">Select a family member to read their card!</h3>
-                    <img src="Fam.jpg" style="height:200px; object-fit: cover; width:100%; border-radius:12px;" alt="Family">
-                </div>
-
-                <!-- Individual Family Greeting Card Views -->
+                <!-- Pure structural button tracking handles the display hooks -->
+                <button class="btn btn-filled">Celebrate Me</button>
