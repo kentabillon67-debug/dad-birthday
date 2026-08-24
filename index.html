@@ -96,23 +96,43 @@
             50% { border-color: white; }
         }
 
-        .btn-link {
-            background: #ffffff;
-            color: #1e40af;
-            padding: 14px 35px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 12px;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s ease;
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
         }
 
-        .btn-link:hover {
-            background: #facc15;
-            color: #1e3a8a;
-            transform: translateY(-2px);
+        @media (max-width: 768px) {
+            .cta-buttons { justify-content: center; }
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-filled {
+            background-color: white;
+            color: #2563eb;
+        }
+
+        .btn-filled:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: #2563eb;
         }
 
         .dad-photo {
@@ -230,7 +250,6 @@
             width: 100%;
         }
 
-        /* --- Panel View Control Core --- */
         .pane {
             display: none;
             width: 100%;
@@ -282,7 +301,12 @@
             <div class="typewriter-box">
                 <span class="typewriter-text">Jerome Abillon</span>
             </div>
-            <a href="#msgDashboard" class="btn-link" onclick="triggerConfetti()">Messages ❤️</a>
+            
+            <div class="cta-buttons">
+                <!-- Celebrate Me Button restored -->
+                <button class="btn btn-filled" onclick="celebrate()">Celebrate Me</button>
+                <a href="#msgDashboard" class="btn btn-outline" onclick="celebrate()">Messages ❤️</a>
+            </div>
         </div>
         <div class="image-side">
             <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
@@ -313,14 +337,3 @@
                 <div class="pane" id="p-mamaw">
                     <img src="mama%26papa.jpg" alt="Mamaw">
                     <div class="msg-box">
-                        "Happy Birthday to my wonderful partner! Thank you for being our rock, providing for us, and leading our family with love and patience. Wishing you health and endless happiness today!"
-                    </div>
-                </div>
-
-                <div class="pane" id="p-brylle">
-                    <img src="brylle%26papa.jpg" alt="Brylle">
-                    <div class="msg-box">
-                        "Happy Birthday, Papa! Thank you for always giving us the best advice and being someone I can completely look up to. I'm so proud to be your son. Enjoy your special day!"
-                    </div>
-                </div>
-
