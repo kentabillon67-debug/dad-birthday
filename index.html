@@ -146,7 +146,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Pop-up Overlay Container Layout --- */
+        /* --- Pop-up Overlay --- */
         .modal {
             position: fixed;
             top: 0;
@@ -232,6 +232,7 @@
             display: block;
             transition: all 0.2s;
             text-align: center;
+            cursor: pointer;
         }
 
         .member-link:hover {
@@ -279,7 +280,7 @@
             overflow-y: auto;
         }
 
-        /* --- Mechanical Non-Stop Party Confetti Engine --- */
+        /* --- Mechanical Confetti Engine --- */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -288,10 +289,9 @@
             height: 100%;
             pointer-events: none;
             z-index: 2000;
-            display: none; /* Shows up on interaction */
+            display: none;
         }
 
-        /* Pure CSS trigger: Display the falling strips whenever Celebrate or Dashboard is open */
         body:has(.btn-filled:active) .confetti-container,
         #msgDashboard:target .confetti-container {
             display: block !important;
@@ -306,8 +306,7 @@
             animation: drop linear infinite;
         }
 
-        /* Set up independent falling paths to prevent collision */
-        .s1 { left: 8%; background: #facc15; animation-duration: 2.5s; animation-delay: 0s; }
+        .s1 { left: 8%; background: #facc15; animation-duration: 2.5s; }
         .s2 { left: 22%; background: #3b82f6; animation-duration: 3.1s; animation-delay: 0.4s; }
         .s3 { left: 38%; background: #ffffff; animation-duration: 2.8s; animation-delay: 0.9s; }
         .s4 { left: 52%; background: #f472b6; animation-duration: 3.4s; animation-delay: 0.2s; }
@@ -332,7 +331,6 @@
             </div>
             
             <div class="cta-buttons">
-                <!-- Mechanical action fields completely fixed -->
                 <button class="btn btn-filled">Celebrate Me</button>
                 <a href="#msgDashboard" class="btn btn-outline">Messages ❤️</a>
             </div>
@@ -340,3 +338,12 @@
         <div class="image-side">
             <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
         </div>
+    </div>
+
+    <!-- Messages Modal Popup Container -->
+    <div class="modal" id="msgDashboard">
+        
+        <div class="confetti-container">
+            <div class="strip s1"></div>
+            <div class="strip s2"></div>
+            <div class="strip s3"></div>
