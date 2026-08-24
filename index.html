@@ -23,6 +23,7 @@
             justify-content: center;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
         }
 
         @keyframes gradientBG {
@@ -44,6 +45,7 @@
             gap: 40px;
             align-items: center;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
 
         @media (max-width: 768px) {
@@ -277,18 +279,21 @@
             overflow-y: auto;
         }
 
+        /* Fixed placement mechanics for confetti pieces */
         .confetti {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            top: -10px;
-            z-index: 2000;
-            border-radius: 2px;
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            z-index: 9999 !important;
+            border-radius: 3px;
             pointer-events: none;
+            animation: fall linear forwards;
         }
 
         @keyframes fall {
-            to { transform: translateY(105vh) rotate(360deg); }
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(720deg); }
         }
     </style>
 </head>
@@ -303,9 +308,9 @@
             </div>
             
             <div class="cta-buttons">
-                <!-- Celebrate Me Button restored -->
-                <button class="btn btn-filled" onclick="celebrate()">Celebrate Me</button>
-                <a href="#msgDashboard" class="btn btn-outline" onclick="celebrate()">Messages ❤️</a>
+                <!-- Inline function references fixed -->
+                <button class="btn btn-filled" onclick="celebrate(event)">Celebrate Me</button>
+                <a href="#msgDashboard" class="btn btn-outline" onclick="celebrate(event)">Messages ❤️</a>
             </div>
         </div>
         <div class="image-side">
@@ -321,9 +326,9 @@
             
             <div class="nav-side">
                 <div class="nav-title">Family Messages</div>
-                <button class="member-link" id="btn-mamaw" onclick="openPane('mamaw')">Mamaw</button>
-                <button class="member-link" id="btn-brylle" onclick="openPane('brylle')">Brylle</button>
-                <button class="member-link" id="btn-kuya" onclick="openPane('kuya')">Kuya</button>
+                <button class="member-link" id="btn-mamaw" onclick="openPane('mamaw', event)">Mamaw</button>
+                <button class="member-link" id="btn-brylle" onclick="openPane('brylle', event)">Brylle</button>
+                <button class="member-link" id="btn-kuya" onclick="openPane('kuya', event)">Kuya</button>
             </div>
             
             <div class="display-side">
@@ -334,6 +339,3 @@
                 </div>
 
                 <!-- Individual Family Greeting Card Views -->
-                <div class="pane" id="p-mamaw">
-                    <img src="mama%26papa.jpg" alt="Mamaw">
-                    <div class="msg-box">
