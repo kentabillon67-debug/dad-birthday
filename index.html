@@ -278,7 +278,7 @@
             overflow-y: auto;
         }
 
-        /* --- Mechanical Confetti Falling Particles --- */
+        /* --- Falling Confetti Rendering Layer --- */
         .confetti-canvas {
             position: fixed;
             top: 0;
@@ -299,7 +299,7 @@
         }
 
         .animate-fall {
-            animation: dropAnimation 3s linear forwards;
+            animation: dropAnimation 3.2s linear forwards;
         }
 
         @keyframes dropAnimation {
@@ -310,10 +310,8 @@
 </head>
 <body>
 
-    <!-- Target Confetti Anchor Holder -->
     <div class="confetti-canvas" id="confettiLayer"></div>
 
-    <!-- Main Card View Container -->
     <div class="main-card">
         <div class="text-side">
             <p class="intro">Happy Birthday!</p>
@@ -323,27 +321,31 @@
             </div>
             
             <div class="cta-buttons">
-                <button class="btn btn-filled" onclick="runCelebration()">Celebrate Me</button>
-                <a href="#msgDashboard" class="btn btn-outline" onclick="runCelebration()">Messages ❤️</a>
+                <button class="btn btn-filled" id="mainCelebrateBtn">Celebrate Me</button>
+                <a href="#msgDashboard" class="btn btn-outline" id="mainMessagesBtn">Messages ❤️</a>
             </div>
         </div>
         <div class="image-side">
             <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
         </div>
-    </div> <!-- The critical main-card closing tag is now securely placed right here -->
+    </div>
 
-    <!-- Messages Modal Popup Layout Container Block -->
+    <!-- Messages Modal Popup Box Layout Container -->
     <div class="modal" id="msgDashboard">
         <div class="dashboard-container">
             <a href="#" class="close-btn">&times;</a>
             
             <div class="nav-side">
                 <div class="nav-title">Family Messages</div>
-                <button class="member-btn" id="btn-mamaw" onclick="openPane('mamaw')">Mamaw</button>
-                <button class="member-btn" id="btn-brylle" onclick="openPane('brylle')">Brylle</button>
-                <button class="member-btn" id="btn-kuya" onclick="openPane('kuya')">Kuya</button>
+                <button class="member-btn" id="btn-mamaw">Mamaw</button>
+                <button class="member-btn" id="btn-brylle">Brylle</button>
+                <button class="member-btn" id="btn-kuya">Kuya</button>
             </div>
             
             <div class="display-side">
-                <!-- Clean un-nested layout display elements -->
                 <div class="pane" id="p-default" style="display: flex;">
+                    <h3 style="text-align:center; margin-bottom:15px; font-weight:600; font-size:1.2rem;">Select a family member to read their card!</h3>
+                    <img src="Fam.jpg" style="height:200px; object-fit: cover; width:100%; border-radius:12px;" alt="Family">
+                </div>
+
+                <div class="pane" id="p-mamaw">
