@@ -23,7 +23,6 @@
             justify-content: center;
             padding: 20px;
             overflow-x: hidden;
-            position: relative;
         }
 
         @keyframes gradientBG {
@@ -45,7 +44,6 @@
             gap: 40px;
             align-items: center;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            z-index: 10;
         }
 
         @media (max-width: 768px) {
@@ -161,8 +159,7 @@
             padding: 20px;
         }
 
-        /* Toggles modal or main screen confetti state targets */
-        .modal:target, body:target {
+        .modal:target {
             display: flex !important;
         }
 
@@ -221,7 +218,7 @@
             margin-bottom: 5px;
         }
 
-        .member-link {
+        .member-btn {
             background: rgba(255, 255, 255, 0.1);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -229,16 +226,14 @@
             font-size: 1.15rem;
             font-weight: 700;
             border-radius: 12px;
-            text-decoration: none;
-            display: block;
-            transition: all 0.2s;
-            text-align: center;
             cursor: pointer;
+            text-align: center;
+            width: 100%;
+            transition: all 0.2s;
         }
 
-        .member-link:hover {
+        .member-btn:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
         }
 
         .display-side {
@@ -281,8 +276,8 @@
             overflow-y: auto;
         }
 
-        /* --- Mechanical Confetti Engine --- */
-        .confetti-container {
+        /* --- Standard Performance Confetti Engine --- */
+        .confetti-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -290,50 +285,32 @@
             height: 100%;
             pointer-events: none;
             z-index: 2000;
-            display: none;
         }
 
-        /* Displays the confetti elements whenever either target state link goes active */
-        body:target .confetti-container,
-        #msgDashboard:target .confetti-container {
-            display: block !important;
-        }
-
-        .strip {
+        .particle {
             position: absolute;
-            width: 12px;
-            height: 24px;
+            width: 10px;
+            height: 20px;
             top: -30px;
-            border-radius: 3px;
-            animation: drop linear infinite;
+            border-radius: 2px;
+            opacity: 0;
         }
 
-        .s1 { left: 8%; background: #facc15; animation-duration: 2.5s; }
-        .s2 { left: 22%; background: #3b82f6; animation-duration: 3.1s; animation-delay: 0.4s; }
-        .s3 { left: 38%; background: #ffffff; animation-duration: 2.8s; animation-delay: 0.9s; }
-        .s4 { left: 52%; background: #f472b6; animation-duration: 3.4s; animation-delay: 0.2s; }
-        .s5 { left: 68%; background: #34d399; animation-duration: 2.7s; animation-delay: 0.6s; }
-        .s6 { left: 82%; background: #ff4500; animation-duration: 3.2s; animation-delay: 1.1s; }
-        .s7 { left: 94%; background: #a855f7; animation-duration: 2.9s; animation-delay: 0.5s; }
+        /* Animation class triggered by the user interface scripts */
+        .animate-fall {
+            animation: dropAnimation 3s linear forwards;
+        }
 
-        @keyframes drop {
+        @keyframes dropAnimation {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(105vh) rotate(360deg); opacity: 0.3; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Confetti Container mounted out flat to handle both main card or message loops -->
-    <div class="confetti-container">
-        <div class="strip s1"></div>
-        <div class="strip s2"></div>
-        <div class="strip s3"></div>
-        <div class="strip s4"></div>
-        <div class="strip s5"></div>
-        <div class="strip s6"></div>
-        <div class="strip s7"></div>
-    </div>
+    <!-- Confetti Layer Container -->
+    <div class="confetti-canvas" id="confettiLayer"></div>
 
     <div class="main-card">
         <div class="text-side">
@@ -344,3 +321,29 @@
             </div>
             
             <div class="cta-buttons">
+                <button class="btn btn-filled" onclick="runCelebration()">Celebrate Me</button>
+                <a href="#msgDashboard" class="btn btn-outline" onclick="runCelebration()">Messages ❤️</a>
+            </div>
+        </div>
+        <div class="image-side">
+            <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
+        </div>
+    </div>
+
+    <!-- Messages Modal Popup Container -->
+    <div class="modal" id="msgDashboard">
+        <div class="dashboard-container">
+            <a href="#" class="close-btn">&times;</a>
+            
+            <div class="nav-side">
+                <div class="nav-title">Family Messages</div>
+                <button class="member-btn" id="btn-mamaw" onclick="openPane('mamaw')">Mamaw</button>
+                <button class="member-btn" id="btn-brylle" onclick="openPane('brylle')">Brylle</button>
+                <button class="member-btn" id="btn-kuya" onclick="openPane('kuya')">Kuya</button>
+            </div>
+            
+            <div class="display-side">
+                <div class="pane" id="p-default" style="display: flex;">
+                    <h3 style="text-align:center; margin-bottom:15px; font-weight:600; font-size:1.2rem;">Select a family member to read their card!</h3>
+
+                    
