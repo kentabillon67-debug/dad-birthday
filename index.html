@@ -139,30 +139,36 @@
             padding: 20px;
         }
 
-        /* Pure CSS Rule: Displays immediately when URL ends with #msgDashboard */
-        #msgDashboard:target {
+        /* Base open state for structural fragments */
+        .modal:target,
+        #msgDashboard:target,
+        #view-mamaw:target,
+        #view-brylle:target,
+        #view-kuya:target {
             display: flex !important;
         }
 
-        .modal-content {
+        .dashboard-container {
             background: linear-gradient(135deg, #1e40af, #4f46e5);
             border-radius: 24px;
-            padding: 30px;
+            padding: 45px 35px 35px 35px;
             max-width: 950px;
             width: 100%;
             position: relative;
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 30px;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 35px;
             align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
 
         @media (max-width: 800px) {
-            .modal-content {
+            .dashboard-container {
                 grid-template-columns: 1fr;
                 max-height: 90vh;
                 overflow-y: auto;
+                padding: 30px 20px;
             }
         }
 
@@ -172,11 +178,16 @@
             right: 20px;
             background: transparent;
             border: none;
-            color: white;
-            font-size: 2rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 2.2rem;
             cursor: pointer;
             text-decoration: none;
             z-index: 1010;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: white;
         }
 
         .nav-side {
@@ -195,27 +206,27 @@
         .member-link {
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 18px 20px;
+            font-size: 1.15rem;
+            font-weight: 700;
             border-radius: 12px;
             text-decoration: none;
             display: block;
             transition: all 0.2s;
+            text-align: center;
         }
 
         .member-link:hover {
-            background: #facc15;
-            color: #1e3a8a;
-            border-color: #facc15;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         .display-side {
             background: rgba(0, 0, 0, 0.2);
             border-radius: 16px;
-            padding: 20px;
-            min-height: 400px;
+            padding: 25px;
+            min-height: 420px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -229,19 +240,14 @@
             display: none;
             width: 100%;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         /* Show the active greeting frame mechanically based on URL anchor targets */
-        #msgDashboard:target #p-default { display: flex; }
+        #msgDashboard:target #p-default { display: flex !important; }
         #view-mamaw:target #p-mamaw { display: flex !important; }
         #view-brylle:target #p-brylle { display: flex !important; }
         #view-kuya:target #p-kuya { display: flex !important; }
-
-        /* Hide the default view whenever a specific profile link target becomes active */
-        #view-mamaw:target #p-default,
-        #view-brylle:target #p-default,
-        #view-kuya:target #p-default { display: none !important; }
 
         /* Style active target links to turn bright gold mechanically */
         #view-mamaw:target #lnk-mamaw,
@@ -254,21 +260,21 @@
 
         .pane img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         .msg-box {
-            font-size: 1.05rem;
-            line-height: 1.5;
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 10px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 12px;
             border-left: 4px solid #facc15;
             font-style: italic;
-            max-height: 180px;
+            max-height: 200px;
             overflow-y: auto;
         }
 
@@ -279,11 +285,7 @@
             top: -10px;
             z-index: 2000;
             border-radius: 2px;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to { transform: translateY(105vh) rotate(360deg); }
+            pointer-events: none;
         }
     </style>
 </head>
@@ -296,7 +298,6 @@
             <div class="typewriter-box">
                 <span class="typewriter-text">Jerome Abillon</span>
             </div>
-            <!-- Opens the popup framework directly through HTML target anchors -->
             <a href="#msgDashboard" class="btn-link" onclick="triggerConfetti()">Messages ❤️</a>
         </div>
         <div class="image-side">
@@ -305,12 +306,12 @@
     </div>
 
     <!-- Messages Modal Popup Box Layout Container -->
-    <!-- Responds directly to target URLs #msgDashboard, #view-mamaw, #view-brylle, and #view-kuya -->
     <div class="modal" id="msgDashboard">
-        <div class="modal-content" id="view-mamaw">
-        <div class="modal-content" id="view-brylle">
-        <div class="modal-content" id="view-kuya">
-            <!-- Clear link hash to mechanically close the card frame -->
+        <!-- Structural single container block preventing flat target overflow collapse -->
+        <div class="dashboard-container" id="view-mamaw">
+        <div class="dashboard-container" id="view-brylle">
+        <div class="dashboard-container" id="view-kuya">
+            
             <a href="#" class="close-btn">&times;</a>
             
             <div class="nav-side">
@@ -321,4 +322,6 @@
             </div>
             
             <div class="display-side">
-                <div class="pane" id="p-default">
+                <!-- Flat CSS rendering layout selector blocks -->
+                <div class="pane" id="p-default" style="display: flex;">
+                    <h3 style="text-align:center; margin-bottom:15px; font-weight:600; font-size:1.2rem;">Select a family member to read their card!</h3>
