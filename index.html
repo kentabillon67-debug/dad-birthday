@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Meta tags forcing the web browser never to store cache memory of this document -->
+    <meta http-serif="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-serif="Pragma" content="no-cache">
+    <meta http-serif="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Papa!</title>
     <style>
@@ -146,7 +150,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Custom Pop-up Overlay --- */
+        /* --- Pop-up Overlay --- */
         .modal {
             position: fixed;
             top: 0;
@@ -161,7 +165,6 @@
             padding: 20px;
         }
 
-        /* Toggled explicitly inside javascript block */
         .modal.active {
             display: flex !important;
         }
@@ -279,7 +282,7 @@
             overflow-y: auto;
         }
 
-        /* --- Falling Confetti Rendering Layer --- */
+        /* --- Falling Particles Canvas --- */
         .confetti-canvas {
             position: fixed;
             top: 0;
@@ -344,4 +347,3 @@
             
             <div class="display-side">
                 <div class="pane" id="p-default" style="display: flex;">
-                    <h3 style="text-align:center; margin-bottom:15px; font-weight:600; font-size:1.2rem;">Select a family member to read their card!</h3>
