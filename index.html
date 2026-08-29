@@ -112,7 +112,7 @@
             font-size: 1rem;
             font-weight: 600;
             border: 2px solid white;
-            border-radius: 4px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s;
             background: transparent;
@@ -146,7 +146,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* --- Pop-up Overlay --- */
+        /* --- Custom Pop-up Overlay --- */
         .modal {
             position: fixed;
             top: 0;
@@ -161,7 +161,8 @@
             padding: 20px;
         }
 
-        .modal:target {
+        /* Toggled explicitly inside javascript block */
+        .modal.active {
             display: flex !important;
         }
 
@@ -278,7 +279,7 @@
             overflow-y: auto;
         }
 
-        /* --- High-Performance Falling Elements --- */
+        /* --- Falling Confetti Rendering Layer --- */
         .confetti-canvas {
             position: fixed;
             top: 0;
@@ -321,7 +322,7 @@
             
             <div class="cta-buttons">
                 <button class="btn btn-filled" id="mainCelebrateBtn">Celebrate Me</button>
-                <a href="#msgDashboard" class="btn btn-outline" id="mainMessagesBtn">Messages ❤️</a>
+                <button class="btn btn-outline" id="mainMessagesBtn">Messages ❤️</button>
             </div>
         </div>
         <div class="image-side">
@@ -329,10 +330,10 @@
         </div>
     </div>
 
-    <!-- Messages Modal Popup Box Container -->
+    <!-- Messages Modal Popup Box Layout Container -->
     <div class="modal" id="msgDashboard">
         <div class="dashboard-container">
-            <a href="#" class="close-btn">&times;</a>
+            <button class="close-btn" id="modalCloseBtn">&times;</button>
             
             <div class="nav-side">
                 <div class="nav-title">Family Messages</div>
@@ -344,6 +345,3 @@
             <div class="display-side">
                 <div class="pane" id="p-default" style="display: flex;">
                     <h3 style="text-align:center; margin-bottom:15px; font-weight:600; font-size:1.2rem;">Select a family member to read their card!</h3>
-                    <img src="Fam.jpg" style="height:200px; object-fit: cover; width:100%; border-radius:12px;" alt="Family">
-                </div>
-
