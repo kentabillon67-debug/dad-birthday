@@ -237,8 +237,9 @@
             transition: all 0.2s;
         }
 
-        .member-btn:hover {
+        .member-btn:hover, .member-btn.active-tab {
             background: rgba(255, 255, 255, 0.2);
+            border-color: #facc15;
         }
 
         .display-side {
@@ -259,6 +260,10 @@
             width: 100%;
             flex-direction: column;
             gap: 20px;
+        }
+
+        .pane.active-pane {
+            display: flex;
         }
 
         .pane img {
@@ -291,30 +296,35 @@
             height: 100%;
             pointer-events: none;
             z-index: 2000;
+            overflow: hidden;
         }
 
         .particle {
             position: absolute;
-            font-size: 24px;
             top: -40px;
             user-select: none;
             pointer-events: none;
-        }
-
-        .animate-fall {
             animation: dropAnimation 3.2s linear forwards;
         }
 
         @keyframes dropAnimation {
-            0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 1; }
-            100% { transform: translateY(105vh) rotate(360deg) scale(1.2); opacity: 0; }
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="confetti-canvas" id="confettiLayer"></div>
+    <!-- Confetti Container -->
+    <div class="confetti-canvas" id="confettiContainer"></div>
 
+    <!-- Main Entry Card -->
     <div class="main-card">
         <div class="text-side">
             <p class="intro">Happy Birthday!</p>
@@ -322,28 +332,23 @@
             <div class="typewriter-box">
                 <span class="typewriter-text">Jerome Abillon</span>
             </div>
-            
             <div class="cta-buttons">
-                <button class="btn btn-filled" id="mainCelebrateBtn">Celebrate Me</button>
-                <button class="btn btn-outline" id="mainMessagesBtn">Messages ❤️</button>
+                <button class="btn btn-filled" id="celebrateBtn">Celebrate Me</button>
+                <button class="btn btn-outline" id="messagesBtn">Messages 💌</button>
             </div>
         </div>
         <div class="image-side">
-            <img src="papa%202nd.jpg" class="dad-photo" alt="Papa">
+            <!-- Ensure your image file path is correct here -->
+            <img src="papa.jpg" alt="Jerome Abillon" class="dad-photo">
         </div>
     </div>
 
-    <!-- Messages Modal Popup Box Layout Container -->
-    <div class="modal" id="msgDashboard">
+    <!-- Messages Modal Popup -->
+    <div class="modal" id="messagesModal">
         <div class="dashboard-container">
-            <button class="close-btn" id="modalCloseBtn">&times;</button>
+            <button class="close-btn" id="closeModalBtn">&times;</button>
             
             <div class="nav-side">
-                <div class="nav-title">Family Messages</div>
-                <button class="member-btn" id="btn-mamaw">Mamaw</button>
-                <button class="member-btn" id="btn-brylle">Brylle</button>
-                <button class="member-btn" id="btn-kuya">Kuya</button>
-            </div>
-            
-            <div class="display-side">
-                <div class="pane" id="p-default" style="display: flex;">
+                <h2 class="nav-title">Family Messages</h2>
+                <!-- Add family tabs here -->
+                <button class="member-btn" onclick="switchPane('member1')">From Mom</button>
