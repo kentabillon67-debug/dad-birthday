@@ -2,31 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Papa!</title>
+    <title>Happy Birthday, Papa!</title>
     <style>
+        /* Base Styling & Theme (Blue to Purple Gradient Animation) */
+        :root {
+            --primary-blue: #2563eb;
+            --primary-purple: #7c3aed;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #6d28d9, #7c3aed);
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6, #6d28d9, #8b5cf6);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            color: white;
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
+            flex-direction: column;
         }
 
         @keyframes gradientBG {
@@ -35,320 +34,288 @@
             100% { background-position: 0% 50%; }
         }
 
-        .main-card {
-            background: rgba(255, 255, 255, 0.1);
+        /* Header & Navigation Tabs */
+        header {
+            background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            padding: 40px;
-            max-width: 900px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 40px;
-            align-items: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            z-index: 10;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @media (max-width: 768px) {
-            .main-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 25px;
-            }
-            .image-side { order: -1; }
-        }
-
-        .intro {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #bae6fd;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #facc15;
-            text-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-
-        .typewriter-box {
-            height: 35px;
-            margin-bottom: 30px;
-        }
-
-        .typewriter-text {
-            font-size: 1.8rem;
-            font-weight: 400;
-            border-right: 3px solid white;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            display: inline-block;
-            animation: typing 4s steps(14, end) infinite, blink 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            0%, 100% { width: 0; }
-            40%, 80% { width: 14ch; }
-        }
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: white; }
-        }
-
-        .cta-buttons {
+        nav {
             display: flex;
+            justify-content: center;
             gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        @media (max-width: 768px) {
-            .cta-buttons { justify-content: center; }
-        }
-
-        .btn {
-            padding: 12px 30px;
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 24px;
             font-size: 1rem;
             font-weight: 600;
-            border: 2px solid white;
-            border-radius: 12px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: all 0.2s;
-            background: transparent;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-filled {
-            background-color: white;
-            color: #2563eb;
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
 
-        .btn-filled:hover {
-            background-color: transparent;
-            color: white;
+        .tab-btn.active {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
         }
 
-        .btn-outline:hover {
-            background-color: white;
-            color: #2563eb;
-        }
-
-        .dad-photo {
+        /* Container & Page Sections */
+        .container {
+            flex: 1;
+            max-width: 1200px;
             width: 100%;
-            aspect-ratio: 3/4;
-            border-radius: 16px;
-            object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        /* --- Pop-up Overlay --- */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .page-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home/Dashboard Page Styles */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-image {
             width: 100%;
             height: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .modal.active {
-            display: flex !important;
+        /* Animated Icon */
+        .animated-icon {
+            font-size: 3rem;
+            display: inline-block;
+            animation: pulseHeart 1.5s infinite;
+            margin-bottom: 0.5rem;
         }
 
-        .dashboard-container {
-            background: linear-gradient(135deg, #1e40af, #4f46e5);
-            border-radius: 24px;
-            padding: 45px 35px 35px 35px;
-            max-width: 950px;
-            width: 100%;
-            position: relative;
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 35px;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        @media (max-width: 800px) {
-            .dashboard-container {
-                grid-template-columns: 1fr;
-                max-height: 90vh;
-                overflow-y: auto;
-                padding: 30px 20px;
-            }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: transparent;
-            border: none;
-            color: rgba(255,255,255,0.7);
-            font-size: 2.2rem;
-            cursor: pointer;
-            text-decoration: none;
-            z-index: 1010;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: white;
-        }
-
-        .nav-side {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .nav-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #facc15;
-            margin-bottom: 5px;
-        }
-
-        .member-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 18px 20px;
-            font-size: 1.15rem;
-            font-weight: 700;
-            border-radius: 12px;
-            cursor: pointer;
-            text-align: center;
-            width: 100%;
-            transition: all 0.2s;
-        }
-
-        .member-btn:hover, .member-btn.active-tab {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #facc15;
-        }
-
-        .display-side {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            padding: 25px;
-            min-height: 420px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 100%;
-        }
-
-        .pane {
-            display: none;
-            width: 100%;
-            flex-direction: column;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
-        .pane.active-pane {
-            display: flex;
+        .dash-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
         }
 
-        .pane img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .dash-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dash-card h3 {
+            margin-bottom: 0.5rem;
+            color: #93c5fd;
+        }
+
+        .dash-card p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        /* Moments Page (Photo Gallery Grid) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .msg-box {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            background: rgba(0,0,0,0.2);
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid #facc15;
-            font-style: normal;
-            max-height: 200px;
-            overflow-y: auto;
-            white-space: pre-line;
-        }
-
-        /* --- Falling Confetti Layer --- */
-        .confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .gallery-item img {
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 2000;
-            overflow: hidden;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .particle {
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-label {
             position: absolute;
-            top: -40px;
-            user-select: none;
-            pointer-events: none;
-            animation: dropAnimation 3.2s linear forwards;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 8px;
+            font-size: 0.8rem;
+            text-align: center;
         }
 
-        @keyframes dropAnimation {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0;
-            }
+        /* Message Page Styles */
+        .message-card {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 24px;
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .message-card p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+        }
+
+        .signature {
+            font-style: italic;
+            font-weight: bold;
+            color: #a78bfa;
+            margin-top: 2rem;
+            font-size: 1.4rem !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            nav { flex-wrap: wrap; }
+            .tab-btn { flex: 1 1 40%; text-align: center; justify-content: center; }
+            .hero-section h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Confetti Container -->
-    <div class="confetti-canvas" id="confettiContainer"></div>
+    <!-- Top Navigation Menu -->
+    <header>
+        <nav>
+            <button class="tab-btn active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+            <button class="tab-btn" onclick="switchTab('moments')">📸 Moments</button>
+            <button class="tab-btn" onclick="switchTab('message')">✉️ Message</button>
+        </nav>
+    </header>
 
-    <!-- Main Entry Card -->
-    <div class="main-card">
-        <div class="text-side">
-            <p class="intro">Happy Birthday!</p>
-            <h1>Best Papa!</h1>
-            <div class="typewriter-box">
-                <span class="typewriter-text">Jerome Abillon</span>
-            </div>
-            <div class="cta-buttons">
-                <button class="btn btn-filled" id="celebrateBtn">Celebrate Me</button>
-                <button class="btn btn-outline" id="messagesBtn">Messages 💌</button>
-            </div>
-        </div>
-        <div class="image-side">
-            <!-- Ensure your image file path is correct here -->
-            <img src="papa.jpg" alt="Jerome Abillon" class="dad-photo">
-        </div>
-    </div>
+    <!-- Main Container Content -->
+    <div class="container">
 
-    <!-- Messages Modal Popup -->
-    <div class="modal" id="messagesModal">
-        <div class="dashboard-container">
-            <button class="close-btn" id="closeModalBtn">&times;</button>
-            
-            <div class="nav-side">
-                <h2 class="nav-title">Family Messages</h2>
-                <!-- Add family tabs here -->
-                <button class="member-btn" onclick="switchPane('member1')">From Mom</button>
+        <!-- 1. DASHBOARD / HOME PAGE -->
+        <section id="dashboard" class="page-content active">
+            <div class="hero-section">
+                <!-- Icon Animation -->
+                <div class="animated-icon">👑</div>
+                <h1>Happy Birthday, Papa!</h1>
+                <p>Welcome to your personal digital celebration dashboard.</p>
+                <div class="hero-image-container" style="margin-top: 1.5rem;">
+                    <!-- Front Page Image of Father -->
+                    <img src="papa1.jpeg" alt="Papa" class="hero-image" onerror="this.src='https://placeholder.com'">
+                </div>
+            </div>
+
+            <!-- Dashboard Style Metrics -->
+            <div class="dashboard-grid">
+                <div class="dash-card">
+                    <h3>Best Father Status</h3>
+                    <p>🥇 #1 Ranked Worldwide</p>
+                </div>
+                <div class="dash-card">
+                    <h3>Life Achievements</h3>
+                    <p>Infinite Love, Guidance, and Support</p>
+                </div>
+                <div class="dash-card">
+                    <h3>Celebration Level</h3>
+                    <p>💯 Maximum Joy Loaded</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. MOMENTS PAGE (50 Photos loaded dynamically via JavaScript) -->
+        <section id="moments" class="page-content">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>Our Shared Moments</h2>
+                <p>Looking back at 50 beautiful memories with you.</p>
+            </div>
+            <div class="gallery-grid" id="photoGallery">
+                <!-- JavaScript will safely generate photo1.jpeg to photo50.jpeg here -->
+            </div>
+        </section>
+
+
+        <!-- 3. MESSAGE PAGE -->
+        <section id="message" class="page-content">
+            <div class="message-card">
+                <div class="animated-icon" style="font-size: 2.5rem;">❤️</div>
+                <h2>To the Best Dad in the World</h2>
+                <br>
+                <p>Dear Papa,</p>
+                <p>Thank you for always being my pillar of strength, my guide, and my biggest supporter. Your wisdom and patience have taught me so much about life.</p>
+                <p>On your special day, I wanted to build something unique just for you to show how much you mean to us. May your year ahead be full of peace, good health, and infinite happiness.</p>
+                <p class="signature">With love always,</p>
+                <p style="font-weight: 600; color: white;">Your Child</p>
